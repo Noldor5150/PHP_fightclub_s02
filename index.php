@@ -48,7 +48,13 @@ Class Gerimas {
     }
 
 }
-$gerimas = new Gerimas();
+$vodke = new Gerimas();
+$vodke->setData([
+    'name' => 'Sobieskio',
+    'amount_ml' => 700,
+    'abarot' => 70.5
+]);
+var_dump($vodke);
 ?>
 <html>
     <head>
