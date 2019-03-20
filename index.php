@@ -39,7 +39,7 @@ Class Gerimas {
         return $this->data;
     }
   
-     public function setData($data){
+     public function setData(array $data){
         return $this->data = [
             'name' => setName($data['name']),
             'amount_ml' => setAmount($data['amount_mle']),
