@@ -16,7 +16,14 @@ Class Jacuzzi {
     }
 
 }
-$maudynes = new Jacuzzi(100,200);
-
+class User{
+    public function peeInJakuzzi(Jacuzzi $jakuzzi,$amount) {
+        $jakuzzi->amount_non_water +=$amount ;
+    }
+}
+$maudynes = new Jacuzzi(600000,0);
+$Piotras = new User ;
+$Piotra = new User ;
+$Piotras->peeInJakuzzi($maudynes, rand(1000, 2000));
+$Piotra->peeInJakuzzi($maudynes, rand(500, 1000));
 print $maudynes->getWaterPurity();
-var_dump($maudynes);
