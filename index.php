@@ -19,7 +19,7 @@ Class Gerimas {
         $this->amount_ml = $amount_ml;
     }
 
-    public function setAbarot(int $abarot) {
+    public function setAbarot(float $abarot) {
         $this->abarot = $abarot;
     }
 
@@ -40,11 +40,10 @@ Class Gerimas {
     }
   
      public function setData(array $data){
-        return $this->data = [
-            'name' => setName($data['name']),
-            'amount_ml' => setAmount($data['amount_mle']),
-            'abarot' => setAbarot($data['abarot'])
-        ];
+        $this->setName($data['name']);
+        $this->setAmount($data['amount_ml']);
+        $this->setAbarot($data['abarot']);
+        
     }
 
 }
