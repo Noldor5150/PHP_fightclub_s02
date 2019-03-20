@@ -1,43 +1,55 @@
 <?php
-
-class ThailandSurpise {
-
-    public $clothes;
-    private $balls;
-    private $name;
-   
-    public function __construct($name) {
-        $this->balls = rand(0, 1);
-        $this->name = $name;
+Class FileDB {
+    private $file_uri;
+    private $data;
+    public function __construct($file_uri) {
+        $this->file_uri = $file_uri;
+        $this->data = null;
+        $this->load();
     }
-
-    public function attachBalls() {
-        $this->balls = true;
+    
+    public function setRow($table, $row_id, $row_data){
+        $this->data[$table][$row_id] = $row_data;
     }
-
-    public function detachBalls() {
-        $this->balls = false;
+    
+    public function getRow($table, $row_id) {
+        return $this->data[$table][$row_id];
     }
-
-    public function getPhoto() {
-        if ($this->balls == true) {
-           return 'images/balls.jpg';
+    
+    public function setRowColumn($table, $row_id, $column_id, $column_data){
+        $this->data[$table][$row_id][$column_id] = $column_data;
+    }
+    
+    public function getRowColumn($table, $row_id, $column_id){
+        return $this->data[$table][$row_id][$column_id];
+    }
+    public function save() {
+        $data_json = json_encode($this->data);
+        if (file_put_contents($this->file_uri, $data_json)) {
+            return true;
         } else {
-            return 'images/noballs.jpg';
+            throw new Exception('Neisejo issaugoti i faila.');
         }
     }
-
+    public function load() {
+        if (!file_exists($this->file_uri)) {
+            $this->data = [];
+        } else {
+            $json_data = file_get_contents($this->file_uri);
+            $this->data = json_decode($json_data, true);
+        }
+    }
 }
-$surprise = new ThailandSurpise('pizdabolas');
+$db = new FileDB('files/txt.txt');
+$db->setRow('ernestas', 'bananas', ['loaction' => 'oral']);
+$db->setRow('ruta', 'ruta', ['loaction' => 'ledai']);
+$db->save();
 ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
     <head>
-        <meta charset="utf-8">  
-        <link rel="stylesheet" href="assets/css/app.css">  
-        <title>OOP6</title>
+        <title>OOP</title>
     </head>
     <body>
-        <img src="<?php print $surprise->getPhoto(); ?>">
+
     </body>
 </html>
