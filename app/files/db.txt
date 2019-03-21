@@ -1,1 +1,1 @@
-[]
+{"stiprus":{"bbz":{"name":"Sobieskio","amount_ml":700,"abarot":70.5}}}
