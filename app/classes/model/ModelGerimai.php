@@ -19,8 +19,33 @@ class ModelGerimai {
     }
 
     public function insert($row_id, \App\Item\Gerimas $gerimas) {
-        $this->db->setRow($this->table_name, $row_id, $gerimas->getData());
-        $this->db->save();
+        if (!$this->db->getRow($this->table_name, $row_id)) {
+            $this->db->setRow($this->table_name, $row_id, $gerimas->getData());
+            $this->db->save();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update($row_id, \App\Item\Gerimas $gerimas) {
+        if (!$this->db->getRow($this->table_name, $row_id)) {
+            $this->db->setRow($this->table_name, $row_id, $gerimas->getData());
+            $this->db->save();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+  public function delete($row_id) {
+        if ($this->db->getRow($this->table_name, $row_id)) {
+            $this->db->deleteRow($this->table_name, $row_id);
+            $this->db->save();
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

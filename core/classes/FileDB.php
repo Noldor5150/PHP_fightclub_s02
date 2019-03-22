@@ -36,10 +36,14 @@ class FileDB {
     public function save() {
         $data_json = json_encode($this->data);
         if (file_put_contents($this->file_uri, $data_json)) {
-
             return true;
         } else {
             throw new Exception('Neisejo issaugoti i faila.');
         }
     }
+    
+    public function deleteRow($table, $row_id ){
+        unset ($this->data[$table][$row_id]);
+    }
+    
 }
