@@ -38,7 +38,7 @@ class ModelGerimai {
         }
     }
 
-  public function delete($row_id) {
+    public function delete($row_id) {
         if ($this->db->getRow($this->table_name, $row_id)) {
             $this->db->deleteRow($this->table_name, $row_id);
             $this->db->save();
@@ -46,6 +46,25 @@ class ModelGerimai {
         } else {
             return false;
         }
+    }
+
+    public function loadAll() {
+        $rows_data = $this->db->getRows($this->table_name);
+        $gerimai = [];
+
+        if ($rows_data) {
+            foreach ($rows_data as $row_data) {
+                $gerimai[] = \App\Item\Gerimas($row_data);
+            }
+            return $gerimai;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteAll() {
+        $this->db->deleteRows($this->table_name);
+        $this->db->save();
     }
 
 }
