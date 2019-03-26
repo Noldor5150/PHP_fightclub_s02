@@ -14,7 +14,6 @@ class ModelGerimai {
 
     public function load($row_id) {
         $row_data = $this->db->getRow($this->table_name, $row_id);
-        var_dump($row_data);
         return new \App\Item\Gerimas($row_data);
     }
 
@@ -49,12 +48,14 @@ class ModelGerimai {
     }
 
     public function loadAll() {
+        
+        
         $rows_data = $this->db->getRows($this->table_name);
         $gerimai = [];
 
         if ($rows_data) {
             foreach ($rows_data as $row_data) {
-                $gerimai[] = \App\Item\Gerimas($row_data);
+                $gerimai[] = new \App\Item\Gerimas($row_data);
             }
             return $gerimai;
         } else {

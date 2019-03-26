@@ -1,1 +1,1 @@
-{"stiprus":[]}
+{"stiprus":{"viskis":{"name":"Jackas","amount_ml":1500,"abarot":45.5},"vodke":{"name":"Sobieskio","amount_ml":700,"abarot":70.5},"ginas":{"name":"Gordons","amount_ml":700,"abarot":43.5},"likeris":{"name":"Starka","amount_ml":500,"abarot":49.9}}}
