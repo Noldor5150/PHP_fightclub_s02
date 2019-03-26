@@ -13,13 +13,17 @@ Class Gerimas {
             $this->data = [
                 'name' => null,
                 'amount_ml' => null,
-                'abarot' => null
+                'abarot' => null,
+                'image'=> null,
             ];
         }
     }
 
     public function setName(string $name) {
         $this->data['name'] = $name;
+    }
+     public function setImage(string $image) {
+        $this->data['image'] = $image;
     }
 
     public function setAmount(int $amount_ml) {
@@ -32,6 +36,10 @@ Class Gerimas {
 
     public function getName() {
         return $this->data['name'];
+    }
+    
+    public function getImage() {
+        return $this->data['image'];
     }
 
     public function getAmount() {
@@ -50,6 +58,7 @@ Class Gerimas {
         $this->setName($data['name']);
         $this->setAmount($data['amount_ml']);
         $this->setAbarot($data['abarot']);
+        $this->setImage($data['image']);
     }
 
 }

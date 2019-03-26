@@ -49,7 +49,6 @@ class ModelGerimai {
 
     public function loadAll() {
         
-        
         $rows_data = $this->db->getRows($this->table_name);
         $gerimai = [];
 
