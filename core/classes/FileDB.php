@@ -22,7 +22,7 @@ class FileDB {
     }
 
     public function getRow($table, $row_id) {
-        return $this->data[$table][$row_id];
+        return $this->data[$table][$row_id]??false;
     }
 
     public function getRowColumn($table, $row_id, $column_id) {

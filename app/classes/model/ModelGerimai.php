@@ -56,10 +56,9 @@ class ModelGerimai {
             foreach ($rows_data as $row_data) {
                 $gerimai[] = new \App\Item\Gerimas($row_data);
             }
-            return $gerimai;
-        } else {
-            return false;
         }
+        
+        return $gerimai;
     }
 
     public function deleteAll() {
