@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Item;
+namespace App;
 
 Class User {
 
@@ -36,7 +36,7 @@ Class User {
         $this->data['email'] = $email;
     }
 
-    public function setFullname(string $full_name) {
+    public function setFullName(string $full_name) {
         $this->data['full_name'] = $full_name;
     }
 
@@ -44,13 +44,13 @@ Class User {
         $this->data['age'] = $age;
     }
 
-    public function setGender($gender) {
+    public function setGender(string $gender) {
         if (in_array($gender, [$this::GENDER_MALE, $this::GENDER_FEMALE])) {
             $this->data['gender'] = $gender;
         }
     }
 
-    public function setOrientation($orientation) {
+    public function setOrientation(string $orientation) {
         if (in_array($orientation, [$this::ORIENTATION_GAY, $this::ORIENTATION_STRAIGHT, $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
@@ -64,7 +64,7 @@ Class User {
         return $this->data['username'];
     }
 
-    public function getFullname() {
+    public function getFullName() {
         return $this->data['full_name'];
     }
 
@@ -90,11 +90,11 @@ Class User {
     
     public function setData(array $data) {
         $this->setUsername($data['username']) ?? '';
-        $this->setFullname($data['full_name'])?? '';
+        $this->setFullName($data['full_name'])?? '';
         $this->setEmail($data['email'])?? '';
-        $this->setEmail($data['age'])?? null;
+        $this->setAge($data['age'])?? null;
         $this->setGender($data['gender'])?? '';
-        $this->setOrientation($data['Orientation'])?? 'null';
+        $this->setOrientation($data['Orientation'])?? '';
         $this->setPhoto($data['photo'])?? '';
     }
       public function getData() {
