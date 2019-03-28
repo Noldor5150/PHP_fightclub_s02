@@ -53,7 +53,7 @@ class ModelUser{
 
         if ($rows_data) {
             foreach ($rows_data as $row_data) {
-                $gerimai[] = new \App\Item\Gerimas($row_data);
+                $gerimai[] = new \App\User($row_data);
             }
         }
         
