@@ -2,7 +2,8 @@
 
 namespace App\Model;
 
-class ModelUser{
+class ModelUser {
+
     private $table_name;
     private $db;
 
@@ -47,7 +48,7 @@ class ModelUser{
     }
 
     public function loadAll() {
-        
+
         $rows_data = $this->db->getRows($this->table_name);
         $users = [];
 
@@ -56,8 +57,8 @@ class ModelUser{
                 $users[] = new \App\User($row_data);
             }
         }
-        
-        return $user;
+
+        return $users;
     }
 
     public function deleteAll() {
@@ -66,5 +67,3 @@ class ModelUser{
     }
 
 }
-
-
