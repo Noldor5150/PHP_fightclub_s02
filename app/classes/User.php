@@ -89,13 +89,13 @@ Class User {
     }
     
     public function setData(array $data) {
-        $this->setUsername($data['username']) ?? '';
-        $this->setFullName($data['full_name'])?? '';
-        $this->setEmail($data['email'])?? '';
-        $this->setAge($data['age'])?? null;
-        $this->setGender($data['gender'])?? '';
-        $this->setOrientation($data['Orientation'])?? '';
-        $this->setPhoto($data['photo'])?? '';
+        $this->setUsername($data['username'] ?? '');
+        $this->setFullName($data['full_name']?? '');
+        $this->setEmail($data['email']?? '');
+        $this->setAge($data['age']?? null);
+        $this->setGender($data['gender']?? '');
+        $this->setOrientation($data['orientation']?? '');
+        $this->setPhoto($data['photo']?? '');
     }
       public function getData() {
         return $this->data;
