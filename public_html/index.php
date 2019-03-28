@@ -4,7 +4,6 @@ require '../bootloader.php';
 $form = [
     'fields' => [
         'pavadinimas' => [
-            'name' => 'pavadinimas',
             'label' => 'Iveskite pavadinima ',
             'type' => 'text',
             'placeholder' => 'Gerimo pavadinimas',
@@ -13,7 +12,6 @@ $form = [
             ],
         ],
         'amount_ml' => [
-            'name' => 'amount_ml',
             'label' => 'Iveskite kieki ',
             'type' => 'number',
             'placeholder' => 'Gerimo turis',
@@ -22,7 +20,6 @@ $form = [
             ],
         ],
         'abarot' => [
-            'name' => 'abarot',
             'label' => 'Iveskite abarota ',
             'type' => 'text',
             'placeholder' => 'Gerimo abarotai',
@@ -31,12 +28,11 @@ $form = [
             ],
         ],
         'image' => [
-            'name' => 'image',
             'label' => 'Iveskite paveiksliuko url ',
-            'type' => 'text',
+            'type' => 'file',
             'placeholder' => '',
             'validate' => [
-                'validate_not_empty',
+               'validate_field_file'
             ],
         ]
     ],
@@ -81,7 +77,15 @@ $likeris = new \App\Item\Gerimas([
     'image'=>'/images/balls.jpg'
 ]);
 
-
+function validate_field_file($input, &$field,&$safe_input){
+    $file= $_FILES[$field['id']]?? flase;
+    if($file){
+        if($file['error']==0) {
+            return true;
+        }
+    }
+    $field['error_msg'] = 'neikelei failo';
+}
 function form_success($safe_input, $form) {
     $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
     $model_gerimai = new App\model\ModelGerimai('kokteiliai',$db);

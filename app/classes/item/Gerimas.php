@@ -55,10 +55,10 @@ Class Gerimas {
     }
 
     public function setData(array $data) {
-        $this->setName($data['name']);
-        $this->setAmount($data['amount_ml']);
-        $this->setAbarot($data['abarot']);
-        $this->setImage($data['image']);
+        $this->setName($data['name']) ?? '';
+        $this->setAmount($data['amount_ml']) ?? null;
+        $this->setAbarot($data['abarot']) ?? null;
+        $this->setImage($data['image']) ?? '';
     }
 
 }

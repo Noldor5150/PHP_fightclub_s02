@@ -27,6 +27,7 @@ function validate_form($safe_input, &$form) {
     foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
+                $field['id'] = $field_id;
                 if (!$validator($safe_input[$field_id], $field, $safe_input)) {
                     $success = false;
                     break;
