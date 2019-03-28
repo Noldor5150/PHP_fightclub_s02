@@ -1,13 +1,14 @@
-
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <?php foreach ($form['fields'] as $field_id => $field): ?>
         <label>
             <span><?php print $field['label']; ?></span>
 
             <!-- Form field -->            
-            <?php if (in_array($field['type'], ['text', 'password','number','text'])): ?>
+            <?php if (in_array($field['type'], ['text', 'password', 'number', 'file'])): ?>
                 <!-- Simple input field: text, password -->
                 <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
+            <?php elseif ($field['type'] == 'float'): ?>
+                <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>" step="0.01"/>
             <?php elseif ($field['type'] == 'select'): ?>
                 <!-- Select field -->
                 <select name="<?php print $field_id; ?>">
@@ -23,7 +24,11 @@
             <?php endif; ?>
         </label>
     <?php endforeach; ?>
-
+    
+    <?php if (isset($form['error_msg'])): ?>
+        <p class="error"><?php print $form['error_msg']; ?></p>
+    <?php endif; ?>
+        
     <!-- Buttons -->
     <?php foreach ($form['buttons'] as $button_id => $button): ?>
         <button name="action" value="<?php print $button_id; ?>">
@@ -31,4 +36,3 @@
         </button>
     <?php endforeach; ?>
 </form>
-

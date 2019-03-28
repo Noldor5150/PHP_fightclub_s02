@@ -13,9 +13,7 @@ Class User {
     const GENDER_FEMALE = 'f';
 
     public function __construct($data = null) {
-        if ($data) {
-            $this->setData($data);
-        } else {
+        if (!$data) {
             $this->data = [
                 'username' => null,
                 'email' => null,
@@ -23,13 +21,15 @@ Class User {
                 'age' => null,
                 'gender' => null,
                 'orientation' => null,
-                'photo' => null
+                'photo' => null,
             ];
+        } else {
+            $this->setData($data);
         }
     }
 
-    public function setUsername(string $username) {
-        $this->data['username'] = $username;
+    public function setUserName(string $name) {
+        $this->data['username'] = $name;
     }
 
     public function setEmail(string $email) {
@@ -51,7 +51,10 @@ Class User {
     }
 
     public function setOrientation(string $orientation) {
-        if (in_array($orientation, [$this::ORIENTATION_GAY, $this::ORIENTATION_STRAIGHT, $this::ORIENTATION_BISEXUAL])) {
+        if (in_array($orientation, [
+                    $this::ORIENTATION_GAY,
+                    $this::ORIENTATION_STRAIGHT,
+                    $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
     }
@@ -60,16 +63,16 @@ Class User {
         $this->data['photo'] = $photo;
     }
 
-    public function getUserame() {
+    public function getUsername() {
         return $this->data['username'];
-    }
-
-    public function getFullName() {
-        return $this->data['full_name'];
     }
 
     public function getEmail() {
         return $this->data['email'];
+    }
+
+    public function getFullName() {
+        return $this->data['full_name'];
     }
 
     public function getAge() {
@@ -80,24 +83,36 @@ Class User {
         return $this->data['gender'];
     }
 
-     public function getOrientation() {
+    public function getOrientation() {
         return $this->data['orientation'];
     }
-            
+
+    public static function getGenderOptions() {
+        return [self::GENDER_FEMALE => 'Female',
+            self::GENDER_MALE => 'Male'];
+    }
+
+    public static function getOrientationOptions() {
+        return [self::ORIENTATION_GAY => 'Gay',
+            self::ORIENTATION_STRAIGHT => 'Straight',
+            self::ORIENTATION_BISEXUAL => 'Bisexual'];
+    }
+
     public function getPhoto() {
         return $this->data['photo'];
     }
-    
+
     public function setData(array $data) {
         $this->setUsername($data['username'] ?? '');
-        $this->setFullName($data['full_name']?? '');
-        $this->setEmail($data['email']?? '');
-        $this->setAge($data['age']?? null);
-        $this->setGender($data['gender']?? '');
-        $this->setOrientation($data['orientation']?? '');
-        $this->setPhoto($data['photo']?? '');
+        $this->setEmail($data['email'] ?? '');
+        $this->setFullName($data['full_name'] ?? '');
+        $this->setAge($data['age'] ?? null);
+        $this->setGender($data['gender'] ?? '');
+        $this->setOrientation($data['orientation'] ?? '');
+        $this->setPhoto($data['photo'] ?? '');
     }
-      public function getData() {
+
+    public function getData() {
         return $this->data;
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Gauname saugu patikrinta user input.
  * 
@@ -14,6 +15,7 @@ function get_safe_input($form) {
     }
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
+
 /**
  * Patikriname ar formoje esancios validacijos funkcijos yra teisingos ir iskvieciame ju funkcijas(not empty, not a number).
  * 
@@ -28,6 +30,7 @@ function validate_form($safe_input, &$form) {
         foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
                 $field['id'] = $field_id;
+
                 if (!$validator($safe_input[$field_id], $field, $safe_input)) {
                     $success = false;
                     break;
@@ -41,8 +44,8 @@ function validate_form($safe_input, &$form) {
     }
     if ($success) {
         $form['validate'] = $form['validate'] ?? [];
-        
-		foreach ($form['validate'] as $validator) {
+
+        foreach ($form['validate'] as $validator) {
             if (is_callable($validator)) {
                 if (!$validator($safe_input, $form)) {
                     $success = false;
@@ -55,7 +58,7 @@ function validate_form($safe_input, &$form) {
             }
         }
     }
-    
+
     if ($success) {
         foreach ($form['callbacks']['success'] as $callback) {
             if (is_callable($callback)) {
@@ -77,9 +80,10 @@ function validate_form($safe_input, &$form) {
             }
         }
     }
-    
+
     return $success;
 }
+
 /**
  * Checks if field is empty
  * 
@@ -96,6 +100,7 @@ function validate_not_empty($field_input, &$field, $safe_input) {
         return true;
     }
 }
+
 /**
  * Checks if field is a number
  * 
@@ -110,5 +115,18 @@ function validate_is_number($field_input, &$field, $safe_input) {
         ]);
     } else {
         return true;
+    }
+}
+
+function validate_file($field_input, &$field, &$safe_input) {
+    $file = $_FILES[$field['id']] ?? false;
+
+    if ($file) {
+        if ($file['error'] == 0) {
+            $safe_input[$field['id']] = $file;
+            return true;
+        }
+    } else {
+        $field['error_msg'] = 'Nenurodei fotkes';
     }
 }
