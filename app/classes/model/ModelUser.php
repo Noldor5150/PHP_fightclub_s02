@@ -28,7 +28,7 @@ class ModelUser{
 
     public function update($row_id, \App\User $user) {
         if ($this->db->getRow($this->table_name, $row_id)) {
-            $this->db->setRow($this->table_name, $row_id, $gerimas->getData());
+            $this->db->setRow($this->table_name, $row_id, $user->getData());
             $this->db->save();
             return true;
         } else {
@@ -49,11 +49,11 @@ class ModelUser{
     public function loadAll() {
         
         $rows_data = $this->db->getRows($this->table_name);
-        $gerimai = [];
+        $users = [];
 
         if ($rows_data) {
             foreach ($rows_data as $row_data) {
-                $gerimai[] = new \App\User($row_data);
+                $users[] = new \App\User($row_data);
             }
         }
         
