@@ -4,14 +4,14 @@ namespace App;
 
 class Sensors {
 
-    /** $var App\Abstracts\Sensor[] */
+    /** $var \App\Abstracts\Sensor[] */
     private $sensors;
 
     public function __construct() {
         $this->sensors = [];
     }
 
-    public function add($id, App\Abstracts\Sensor $sensor) {
+    public function add($id, \App\Abstracts\Sensor $sensor) {
         $this->sensors[$id] = $sensor;
     }
 
