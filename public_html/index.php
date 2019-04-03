@@ -1,10 +1,12 @@
 <?php
 require '../bootloader.php';
+
 $sensors = new \App\Sensors();
 $sensortemp = new \App\SensorFartTemp();
 $sensorhumidity = new \App\SensorFartHumidity();
 $sensors->add('temperatura', $sensortemp);
 $sensors->add('dregme', $sensorhumidity);
+
 ?>
 <html>
     <head>
@@ -18,6 +20,5 @@ $sensors->add('dregme', $sensorhumidity);
                 <h2>How much is the fish: <?php print $value; ?></h2>
             </div>
         <?php endforeach; ?>
-
     </body>
 </html>
