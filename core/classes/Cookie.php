@@ -35,7 +35,8 @@ class Cookie extends Core\Abstracts\Cookie {
     }
 
     public function save($data, $expires_in = 3600): void {
-        
+        $cookie = json_encode($data);
+        setcookie($this->name, $cookie, time()+$expires_in);
     }
 
 }
