@@ -39,4 +39,9 @@ class Cookie extends Core\Abstracts\Cookie {
         setcookie($this->name, $cookie, time()+$expires_in);
     }
 
+    
+    
+    public function delete() {
+        setcookie($this->name, '', time() - 3600, '/');
+    }
 }
