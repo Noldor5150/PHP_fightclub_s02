@@ -12,10 +12,15 @@ class Cookie extends Core\Abstracts\Cookie {
         
     }
 
-    public function exists(): bool {
+    public function exists() {
+       if(isset($_COOKIE[$this->name])){
+            return true;
+        }
         
+        return false;
     }
-
+    
+    
     public function read(): array {
         
     }
