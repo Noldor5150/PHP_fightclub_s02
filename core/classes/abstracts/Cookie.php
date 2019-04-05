@@ -55,7 +55,8 @@ abstract class Cookie {
      * @param $data array
      * @param $expires_in int Už kiek laiko sekundemis cookie nebegalios
      */
-    abstract public function save(array $data, int $expires_in = 3600): void;
+    abstract public function save(array $data, int $expires_in = 3600): void{
+        
 
     /**
      * Turi ištrinti Cookie
